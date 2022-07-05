@@ -1,7 +1,8 @@
 #!/bin/bash
 
 cp .env.example .env && \
-  npm install  && \
-  npm run docker:up  && \
-  npm run db:migrate  && \
-  echo "Project installed and ready to run"
+  npm install && \
+  npm run docker:up && \
+  sleep 5 && \
+  npm run db:migrate && \
+  npm run db:seed:up
