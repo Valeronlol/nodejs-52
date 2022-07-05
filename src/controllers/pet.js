@@ -1,13 +1,14 @@
 const { get } = require('lodash')
 const { Sequelize } = require('sequelize')
-const { Pet, User, sequelize } = require('../services/db')
+const { Pets, User, sequelize } = require('../services/db/models')
 
 exports.createPet = async (req, res) => {
   const { owner_id, ...params } = req.body
   const user = await User.findOne({
-    where: { id: owner_id }
+    attributes: ['id', 'firstName'],
+    where: { id: owner_id },
   })
-  const pet = await Pet.create(params)
+  const pet = await Pets.create(params)
   await user.addPet(pet)
   res.send(pet)
 }
