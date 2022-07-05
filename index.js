@@ -1,4 +1,4 @@
-require("dotenv").config()
+require('dotenv').config()
 
 const express = require('express')
 const router = require('./src/router')
@@ -11,9 +11,7 @@ app.use(express.json())
 app.use(router)
 
 async function main () {
-  await sequelize.sync({
-    // force: process.env.NODE_ENV === 'development',
-  })
+  await sequelize.sync()
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
